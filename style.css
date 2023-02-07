@@ -1,0 +1,26 @@
+body{
+          background-color: beige;
+}
+h1{
+          color: aquamarine;
+          background-color: blueviolet;
+}
+#show_sketch{
+          float:right;
+          margin-right: 20px;
+          margin-top:5px;
+}
+p{
+          font-size: 20px;
+}
+#score{
+          float: right;
+          margin-right: 40px;
+}
+#time{
+          margin-left: 40px;
+}
+canvas{
+          margin-top: 50px;
+          border-radius: 10px;
+}
