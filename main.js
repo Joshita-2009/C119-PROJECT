@@ -7,8 +7,9 @@ score=0;
 timer_check="";
 drawn_sketch="";
 answer_holder="";
-function preload(){
 
+function preload(){
+classifier=ml5.imageClassifier(DoodleNet);
 }
 function updateCanvas(){
           background("white");
@@ -20,6 +21,7 @@ function setup(){
           canvas=createCanvas(300, 300);
           canvas.center();
           background("white");
+          canvas.mouseReleased(classifyCanvas);
 }
 function draw(){
           check_sketch();
@@ -28,8 +30,11 @@ function draw(){
                     score++;
                     document.getElementById("score").innerHTML="Score: " + score;
           }
-
-}
+          strokeWeight(13);
+          stroke(0);
+          if(mouseIsPressed){
+                    line(pmouseX, pmouseY, mouseX, mouseY);
+          }
 function check_sketch(){
           timer_counter++;
           document.getElementById("time").innerHTML="Timer: " + timer_counter;
@@ -43,3 +48,18 @@ function check_sketch(){
                     updateCanvas();
           }
 }
+          function classifyCanvas(){
+             classifier.classify(canvas, gotResults);
+          }
+          
+          function gotResult(error, results){
+          if(error){
+          console.error(error);
+          }
+                    else{
+                        console.log(results);
+                              document.getElementById("label").innerHTML=results[0].label;
+                              document.getElementById("accuracy").innerHTML=Math.round(results[0].confidence * 100) + "%";
+                              drawn_sketch=document.getElementById("label").value;
+                    }
+          }
