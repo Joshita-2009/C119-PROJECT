@@ -52,7 +52,7 @@ function check_sketch(){
              classifier.classify(canvas, gotResults);
           }
           
-          function gotResult(error, results){
+          function gotResults(error, results){
           if(error){
           console.error(error);
           }
@@ -60,6 +60,6 @@ function check_sketch(){
                         console.log(results);
                               document.getElementById("label").innerHTML=results[0].label;
                               document.getElementById("accuracy").innerHTML=Math.round(results[0].confidence * 100) + "%";
-                              drawn_sketch=document.getElementById("label").value;
+                              drawn_sketch=document.getElementById("label").innerHTML=[0].results;
                     }
           }
